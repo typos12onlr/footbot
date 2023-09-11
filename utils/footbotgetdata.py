@@ -256,7 +256,7 @@ def addPossData(playerData,teamData):
 
     return playerData
 
-def filterFive90s(df):
+def filter90s(df):
     df_new = df[df['90s Played'] > 0]
     return df_new
 
@@ -282,7 +282,7 @@ def makeDataset(season):
     playerData=clean_master_df(playerData)
     playerData=renameCols(playerData)
     playerData=convertType(playerData)
-    playerData=filterFive90s(playerData)
+    playerData=filter90s(playerData)
     playerData=convertToPer90(playerData)
     teamData=getTeamData(season)
     playerData=addPossData(playerData,teamData)
