@@ -39,6 +39,11 @@ async def on_message(message):
     await message.channel.send(
         "O le le, O la la, Ser del Barca es, el mas  millor que hi ha")
     
+  elif message.content.startswith(".foot radar2"):
+     x=message.content
+     x=x.split(',')
+
+     await asyncio.to_thread(plotSingle2(x[-1],x[-2],x[-3]))
 
   elif message.content.startswith(".foot radar"):
     await asyncio.to_thread(plotSingle)
