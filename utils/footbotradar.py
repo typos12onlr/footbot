@@ -148,4 +148,30 @@ def plotSingle():
 
     plot(requiredStats,percentiles,raw,inp_player,season)
 
+def plotSingle2(season,inp_player,inp_position):
+
+    #season=input("Enter season")
+    filePath="footbot\data\playerReport"+season+".csv"
+
+    playerData=pd.read_csv(filePath)
+
+    playerData=playerData.loc[playerData["90s Played"]>=5]
+    playerData=playerData.fillna(0)
+
+    #inp_player,inp_position=takeInput(playerData)
+
+    stats_dict={
+
+    "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won %"]
+    ,
+    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won %"]
+
+    }   
+
+    requiredStats=stats_dict[inp_position]
+
+    raw,percentiles=findVals(playerData,requiredStats,inp_player)
+
+    plot(requiredStats,percentiles,raw,inp_player,season)
+
 #plotSingle()
