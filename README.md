@@ -1,6 +1,6 @@
 # footbot
 
-Small footy analysis project, will start with scraping data from fbref and plotting radar graphs. Additionally, develop a player similarity/player profile search tool
+Small footy analysis project, will start with scraping data from fbref and plotting radar graphs. Additionally, develop a player similarity/player profile search tool.
 
 ------------------------------------------------
 
