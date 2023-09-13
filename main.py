@@ -43,13 +43,19 @@ async def on_message(message):
   elif message.content.startswith(".foot radar"):
      x=message.content
      x=x.split(',')
-     season,inp_player,position=x[-1],x[-2],x[-3]
+     
      try:
-       await asyncio.to_thread(plotSingle2(season,inp_player,position))  #season,inp_player,inp_position
-     except:
-        pass
-     await message.channel.send("radar created")
-     await message.channel.send(file=discord.File("player_radar.png"))
+       season,inp_player,position=x[-1],x[-2],x[-3]
+       await asyncio.to_thread(plotSingle2(season.strip(),inp_player.strip().title(),position.strip().lower()))  #season,inp_player,inp_position
+      
+     except TypeError:
+      await message.channel.send("radar created")
+      await message.channel.send(file=discord.File("player_radar.png"))
+
+     except Exception:
+        await message.channel.send("Wrong input\nCorrect format: .foot radar, <position> , <player name> , <season (20XX-20XY)>\npositions supported: forward,midfielder | player names are taken as per FbRef database | data available from 2017-2018 ")
+      
+     
 
   elif message.content.startswith(".foot radar2"):
     await asyncio.to_thread(plotSingle)
