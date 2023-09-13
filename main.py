@@ -19,6 +19,7 @@ load_dotenv()
 @client.event
 async def on_ready():
   print("Visca Barca")
+  
 
 
 @client.event
@@ -39,13 +40,18 @@ async def on_message(message):
     await message.channel.send(
         "O le le, O la la, Ser del Barca es, el mas  millor que hi ha")
     
-  elif message.content.startswith(".foot radar2"):
+  elif message.content.startswith(".foot radar"):
      x=message.content
      x=x.split(',')
+     season,inp_player,position=x[-1],x[-2],x[-3]
+     try:
+       await asyncio.to_thread(plotSingle2(season,inp_player,position))  #season,inp_player,inp_position
+     except:
+        pass
+     await message.channel.send("radar created")
+     await message.channel.send(file=discord.File("player_radar.png"))
 
-     await asyncio.to_thread(plotSingle2(x[-1],x[-2],x[-3]))
-
-  elif message.content.startswith(".foot radar"):
+  elif message.content.startswith(".foot radar2"):
     await asyncio.to_thread(plotSingle)
     await message.channel.send("Done ting")
 
