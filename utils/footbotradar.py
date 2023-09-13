@@ -157,7 +157,7 @@ def plotSingle2(season,inp_player,inp_position):
 
     playerData=playerData.loc[playerData["90s Played"]>=5]
     playerData=playerData.fillna(0)
-
+    playerData["Player"]=playerData["Player"].str.title()
     #inp_player,inp_position=takeInput(playerData)
 
     stats_dict={
