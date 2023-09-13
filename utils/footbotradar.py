@@ -117,7 +117,7 @@ def plot(requiredStats,percentiles,raw,inp_player,season):
 
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig("player_radar.png")
 
 
 
