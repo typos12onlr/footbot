@@ -151,7 +151,7 @@ def plotSingle():
 def plotSingle2(season,inp_player,inp_position):
 
     #season=input("Enter season")
-    filePath="footbot\data\playerReport"+season+".csv"
+    filePath="data\playerReport"+season+".csv"
 
     playerData=pd.read_csv(filePath)
 
