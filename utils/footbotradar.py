@@ -105,7 +105,7 @@ def plot(requiredStats,percentiles,raw,inp_player,season):
 
     # print(table_data_transposed, len(table_data_transposed))
     #print(len(statNameMaster[0]))
-    table_data.insert(0,[inp_player])
+    table_data.insert(0,[inp_player+"/"+season])
     # print(playerNames,type(playerNames))
     table = plt.table(cellText=table_data, cellLoc='center', loc='center', rowLabels=["Player"]+requiredStats)
     table.auto_set_font_size(False)
