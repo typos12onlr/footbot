@@ -166,31 +166,5 @@ def filterPos(playerData,inp_position,positions={"forward":["FW","FW,MF"],"midfi
     #playerData
     return playerData
 
-def plotSingle2(season,inp_player,inp_position):
 
-    #season=input("Enter season")
-    filePath="data/playerReport"+season+".csv"
-
-    playerData=pd.read_csv(filePath)
-
-    playerData=playerData.loc[playerData["90s Played"]>=5].reset_index()
-    playerData=playerData.iloc[:,1:]
-    playerData=playerData.fillna(0)
-
-    playerData=filterPos(playerData,inp_position,positions={"forward":["FW","FW,MF"],"midfielder":["MF","MF,DF","MF,FW"],"defender":["DF,MF","DF"]})
-    #inp_player,inp_position=takeInput(playerData)
-
-    stats_dict={
-
-    "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won %"]
-    ,
-    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won %"]
-
-    }   
-
-    requiredStats=stats_dict[inp_position]
-
-    raw,percentiles=findVals(playerData,requiredStats,inp_player)
-
-    plot(requiredStats,percentiles,raw,inp_player,season)
 

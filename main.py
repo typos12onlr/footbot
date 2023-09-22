@@ -8,7 +8,7 @@ import discord
 
 from utils.footbotgetdata import *
 
-from utils.footbotfunctionalities import *
+from utils.footbotcommands import *
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -46,7 +46,7 @@ async def on_message(message):
      
      try:
        season,inp_player,position=x[-1],x[-2],x[-3]
-       await asyncio.to_thread(plotSingle2(season.strip(),inp_player.strip().title(),position.strip().lower()))  #season,inp_player,inp_position
+       await asyncio.to_thread(radar(season.strip(),inp_player.strip().title(),position.strip().lower()))  #season,inp_player,inp_position
       
      except TypeError:
       await message.channel.send("radar created")
