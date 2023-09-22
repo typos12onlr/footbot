@@ -169,7 +169,7 @@ def filterPos(playerData,inp_position,positions={"forward":["FW","FW,MF"],"midfi
 def plotSingle2(season,inp_player,inp_position):
 
     #season=input("Enter season")
-    filePath="footbot\data\playerReport"+season+".csv"
+    filePath="data\playerReport"+season+".csv"
 
     playerData=pd.read_csv(filePath)
 
@@ -198,7 +198,7 @@ def findSimilar(season,position,inp_player,num_players):
 
     #inputting season and player data
     #season=input("Enter season")
-    filePath="footbot\data\playerReport"+season+".csv"
+    filePath="data\playerReport"+season+".csv"
 
     playerData=pd.read_csv(filePath)
 

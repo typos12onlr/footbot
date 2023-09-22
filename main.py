@@ -8,7 +8,7 @@ import discord
 
 from utils.footbotgetdata import *
 
-from utils.footbotradar import *
+from utils.footbotfunctionalities import *
 
 intents = discord.Intents.default()
 intents.message_content = True
