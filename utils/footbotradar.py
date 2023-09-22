@@ -174,4 +174,4 @@ def plotSingle2(season,inp_player,inp_position):
 
     plot(requiredStats,percentiles,raw,inp_player,season)
 
-#plotSingle()
+#plotSingle() ok
