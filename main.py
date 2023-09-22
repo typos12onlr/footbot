@@ -52,11 +52,27 @@ async def on_message(message):
       await message.channel.send("radar created")
       await message.channel.send(file=discord.File("player_radar.png"))
 
-     except Exception:
+     except Exception as e:
+        print(e)
         await message.channel.send("Wrong input\nCorrect format: .foot radar, <position> , <player name> , <season (20XX-20XY)>\npositions supported: forward,midfielder | player names are taken as per FbRef database | data available from 2017-2018 ")
       
      
-
+  elif message.content.startswith(".foot scout"):
+    
+    x=message.content
+    x=x.split(',')
+     
+    
+    num_players,season,inp_player,position=x[-1].strip(),x[-2],x[-3],x[-4]
+    num_players=int(num_players)
+    if (num_players>25):
+      num_players=25
+    try:
+      await message.channel.send(findSimilar(season=season.strip(),inp_player=inp_player.strip().title(),position=position.strip().lower(),num_players=num_players))
+    except:
+      await message.channel.send("Wrong input, try again\nCorrect Format= '.foot scout,<position [forward/midfielder]>,<player name>,<season>,<number of similar players>'")
+    #await message.channel.send(res[:5])
+     
   elif message.content.startswith(".foot radar2"):
     await asyncio.to_thread(plotSingle)
     await message.channel.send("Done ting")

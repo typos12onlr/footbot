@@ -289,7 +289,7 @@ def makeDataset(season):
     playerData=possAdj(playerData,def_stats)
 
 
-    filename="footbot\data\playerReport"+season+".csv"
+    filename="data\playerReport"+season+".csv"
     playerData.to_csv(filename)
 
 def_stats=   [ ["Tkl","Tackles"],
