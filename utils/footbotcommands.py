@@ -97,25 +97,6 @@ def findSimilar(season,position,inp_player,num_players):
     #print(scoutData.shape)
     #scoutData.loc[scoutData["Player"]=="Rafael Leao"]
 
-
-    #define euclidean distance function
-    def euclidean_dist(target_df,player):
-        count=0
-        scores={}
-      #  print(target_df.shape,target_df.loc[target_df["Player"]=='Rafael Leao'])
-        target_arr=target_df.loc[target_df["Player"]==player]
-        target_arr=target_arr.iloc[:,2:].to_numpy()  #select target player's stats in a np arr
-        
-        for i in range(target_df.shape[0]):
-
-            if target_df.loc[i,"Player"]!=player:    #if player is not target player
-                count+=1
-                test_arr=target_df.iloc[i,2:].to_numpy()    #select player's stats in an np arr
-                euclidean_dist=np.linalg.norm(target_arr-test_arr)   #calc dist
-                
-                scores[target_df.loc[i,"Player"]]=euclidean_dist     #append scores
-
-        return scores
     
     players=euclidean_dist(scoutData,inp_player)
 
