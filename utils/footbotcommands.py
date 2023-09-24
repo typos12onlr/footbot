@@ -15,6 +15,10 @@ def radar(season,inp_player,inp_position):
     playerData=playerData.loc[playerData["90s Played"]>=5].reset_index()
     playerData=playerData.iloc[:,1:]
     playerData=playerData.fillna(0)
+    
+    #convert all player names to title case
+
+    playerData["Player"]=playerData["Player"].str.title()
 
     playerData=filterPos(playerData,inp_position,positions={"forward":["FW","FW,MF"],"midfielder":["MF","MF,DF","MF,FW"],"defender":["DF,MF","DF"]})
     #inp_player,inp_position=takeInput(playerData)
