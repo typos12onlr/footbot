@@ -50,11 +50,11 @@ async def on_message(message):
       
      except TypeError:
       await message.channel.send("radar created")
-      await message.channel.send(file=discord.File("player_radar.png"))
+      await message.reply(file=discord.File("player_radar.png"))
 
      except Exception as e:
         print(e)
-        await message.channel.send("Wrong input\nCorrect format: .foot radar, <position> , <player name> , <season (20XX-20XY)>\npositions supported: forward,midfielder | player names are taken as per FbRef database | data available from 2017-2018 ")
+        await message.reply("Wrong input\nCorrect format: .foot radar, <position> , <player name> , <season (20XX-20XY)>\npositions supported: forward,midfielder | player names are taken as per FbRef database | data available from 2017-2018 ")
       
      
   elif message.content.startswith(".foot scout"):
@@ -68,9 +68,9 @@ async def on_message(message):
     if (num_players>25):
       num_players=25
     try:
-      await message.channel.send(findSimilar(season=season.strip(),inp_player=inp_player.strip().title(),position=position.strip().lower(),num_players=num_players))
+      await message.reply(findSimilar(season=season.strip(),inp_player=inp_player.strip().title(),position=position.strip().lower(),num_players=num_players))
     except:
-      await message.channel.send("Wrong input, try again\nCorrect Format= '.foot scout,<position [forward/midfielder]>,<player name>,<season>,<number of similar players>'")
+      await message.reply("Wrong input, try again\nCorrect Format= '.foot scout,<position [forward/midfielder]>,<player name>,<season>,<number of similar players>'")
     #await message.channel.send(res[:5])
      
   elif message.content.startswith(".foot doubleradar"):
@@ -83,7 +83,7 @@ async def on_message(message):
       
       except TypeError:
         await message.channel.send("radar created")
-        await message.channel.send(file=discord.File("player_radar.png"))
+        await message.reply(file=discord.File("player_radar.png"))
 
       except Exception as e:
         print(e)
@@ -141,7 +141,7 @@ async def on_message(message):
 
 
   elif message.content.startswith(".foot"):
-    await message.channel.send("Hola")
+    await message.channel.send(f"Hola <@{message.author.id}>")
 
 client.run(os.getenv('TOKEN'))
 
