@@ -73,9 +73,21 @@ async def on_message(message):
       await message.channel.send("Wrong input, try again\nCorrect Format= '.foot scout,<position [forward/midfielder]>,<player name>,<season>,<number of similar players>'")
     #await message.channel.send(res[:5])
      
-  elif message.content.startswith(".foot radar2"):
-    await asyncio.to_thread(plotSingle)
-    await message.channel.send("Done ting")
+  elif message.content.startswith(".foot doubleradar"):
+      x=message.content
+      x=x.split(',')
+     
+      try:
+        season,inp_player_one,inp_player_two,position=x[-1],x[-3],x[-2],x[-4]
+        await asyncio.to_thread(doubleRadar(season=season.strip(),inp_player_one=inp_player_one.strip().title(),inp_player_two=inp_player_two.strip().title(),inp_position=position.strip().lower()))  #season,inp_player,inp_position
+      
+      except TypeError:
+        await message.channel.send("radar created")
+        await message.channel.send(file=discord.File("player_radar.png"))
+
+      except Exception as e:
+        print(e)
+        await message.channel.send("Wrong input\nCorrect format: .foot radar, <position> , <player name> , <season (20XX-20XY)>\npositions supported: forward,midfielder | player names are taken as per FbRef database | data available from 2017-2018 ")
 
   elif message.content.startswith(".foot radar test"):
       await message.channel.send("Enter season (e.g., 2021-2022):")

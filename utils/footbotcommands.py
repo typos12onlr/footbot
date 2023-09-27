@@ -8,7 +8,7 @@ from utils.footbothelpers import *
 def radar(season,inp_player,inp_position):
 
     #season=input("Enter season")
-    filePath="data\playerReport"+season+".csv"
+    filePath="footbot\data\playerReport"+season+".csv"
 
     playerData=pd.read_csv(filePath)
 
@@ -37,11 +37,49 @@ def radar(season,inp_player,inp_position):
 
     plot(requiredStats,percentiles,raw,inp_player,season)
 
+
+def doubleRadar(inp_position,inp_player_one,inp_player_two,season):
+
+    #season=input("Enter season")
+    filePath="footbot\data\playerReport"+season+".csv"
+
+    playerData=pd.read_csv(filePath)
+
+    playerData=playerData.loc[playerData["90s Played"]>=5].reset_index()
+    playerData=playerData.iloc[:,1:]
+    playerData=playerData.fillna(0)
+    
+    #convert all player names to title case
+
+    playerData["Player"]=playerData["Player"].str.title()
+
+    playerData=filterPos(playerData,inp_position,positions={"forward":["FW","FW,MF"],"midfielder":["MF","MF,DF","MF,FW"],"defender":["DF,MF","DF"]})
+    #inp_player,inp_position=takeInput(playerData)
+
+    stats_dict={
+
+    "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won %"]
+    ,
+    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won %"]
+
+    }   
+
+    requiredStats=stats_dict[inp_position]
+
+    raw_one,percentiles_one=findVals(playerData,requiredStats,inp_player_one)
+    raw_two,percentiles_two=findVals(playerData,requiredStats,inp_player_two)
+    rawlist=[raw_one,raw_two]
+    perclist=[percentiles_one,percentiles_two]
+    namelist=[inp_player_one,inp_player_two]
+    
+    plotTwo(perclist,rawlist,namelist,requiredStats,season)
+
+
 def findSimilar(season,position,inp_player,num_players):
 
     #inputting season and player data
     #season=input("Enter season")
-    filePath="data\playerReport"+season+".csv"
+    filePath="footbot\data\playerReport"+season+".csv"
 
     playerData=pd.read_csv(filePath)
 
