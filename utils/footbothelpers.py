@@ -186,13 +186,13 @@ def euclidean_dist(target_df,player):
     return scores
 
 def plotTwo(perclist,rawlist,namelist,requiredStats,season):
-    fig= plt.figure(figsize = (24,16))
+    fig= plt.figure(figsize = (16,9))
     ax = plt.subplot(121, polar=True)
     #fig.set_facecolor(bgcolor.value)
     #ax.patch.set_facecolor(bgcolor.value)
     ax.set_rorigin(-20)
 
-    plt.title(label=f"{namelist[0]} vs {namelist[1]} | {season}",loc="center",fontdict={'size':16},y=1.2)
+    plt.title(label=f"{namelist[0]} vs {namelist[1]} | {season}",loc="center",fontdict={'size':20},y=1.15)
     
     for i in range(2):
         percentiles=perclist[i]
@@ -257,8 +257,8 @@ def plotTwo(perclist,rawlist,namelist,requiredStats,season):
 
 
     table = ax_table.table(cellText=table_data, cellLoc='center', loc='center', rowLabels=requiredStats)
-    table.auto_set_font_size(True)
-    #    table.set_fontsize(10)
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
     table.scale(1, 2)  # Adjust scaling as needed for your layout
 
    
