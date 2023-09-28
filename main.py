@@ -63,11 +63,13 @@ async def on_message(message):
     x=x.split(',')
      
     
-    num_players,season,inp_player,position=x[-1].strip(),x[-2],x[-3],x[-4]
-    num_players=int(num_players)
-    if (num_players>25):
-      num_players=25
+
     try:
+
+      num_players,season,inp_player,position=x[-1].strip(),x[-2],x[-3],x[-4]
+      num_players=int(num_players)
+      if (num_players>25):
+        num_players=25
       await message.reply(findSimilar(season=season.strip(),inp_player=inp_player.strip().title(),position=position.strip().lower(),num_players=num_players))
     except:
       await message.reply("Wrong input, try again\nCorrect Format= '.foot scout,<position [forward/midfielder]>,<player name>,<season>,<number of similar players>'")

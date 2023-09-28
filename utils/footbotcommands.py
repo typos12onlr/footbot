@@ -25,11 +25,12 @@ def radar(season,inp_player,inp_position):
 
     stats_dict={
 
-    "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won %"]
+    "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won"]
     ,
-    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won %"]
+    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won"],
 
-    }   
+    "defender" :["Passes into Final Third", "Passes into Penalty Area","Expected Assists","Carries into Final Third","Successful Take Ons","Successful Take on %","Dribbled Past","Progressive Carries","Progressive Passes","Aerials Won %","Tackles","Interceptions","Dribblers Tackled %"]
+}
 
     requiredStats=stats_dict[inp_position]
 
@@ -58,11 +59,12 @@ def doubleRadar(inp_position,inp_player_one,inp_player_two,season):
 
     stats_dict={
 
-    "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won %"]
+    "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won"]
     ,
-    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won %"]
+    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won"],
 
-    }   
+    "defender" :["Passes into Final Third", "Passes into Penalty Area","Expected Assists","Carries into Final Third","Successful Take Ons","Successful Take on %","Dribbled Past","Progressive Carries","Progressive Passes","Aerials Won %","Tackles","Interceptions","Dribblers Tackled %"]
+}
 
     requiredStats=stats_dict[inp_position]
 
@@ -122,9 +124,10 @@ def findSimilar(season,position,inp_player,num_players):
 
     "forward":["Goals","Non Penalty Expected Goals","Assists","Expected Assisted Goals","Key Passes","Passes into Penalty Area","Shot Creating Actions","Goal Creating Actions","Touches in Attacking Penalty Area","Successful Take Ons","Take Ons Attempted","Carries into Final Third","Carries into Penalty Area","Progressive Passes Received","Aerials Won"]
     ,
-    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won"]
+    "midfielder":["Goals","Non Penalty Expected Goals","Expected Assists", "Key Passes", "Passes into Final Third","Progressive Passes","Long Passes Completed","Shot Creating Actions","Tackles Won", "Interceptions","Successful Take Ons","Take Ons Attempted","Progressive Carries","Aerials Won"],
 
-    }
+    "defender" :["Passes into Final Third", "Passes into Penalty Area","Expected Assists","Carries into Final Third","Successful Take Ons","Successful Take on %","Dribbled Past","Progressive Carries","Progressive Passes","Aerials Won %","Tackles","Interceptions","Dribblers Tackled %"]
+}
     requiredStats=stats_dict[position]
     requiredStats.insert(0,"Player")
     scoutData=playerData.loc[:,requiredStats].reset_index()
