@@ -53,71 +53,94 @@ def findVals(playerData,requiredStats,inp_player):
     return raw, percentiles
 
 def plot(requiredStats,percentiles,raw,inp_player,season):
-    arr1 = np.asarray(percentiles)
-    #arr2 = np.asarray(p2vals)
-    N = len(percentiles)
-    bottom = 0.0
-    theta, width = np.linspace(0.0, 2 * np.pi, N, endpoint=False, retstep=True)
 
-    fig= plt.figure(figsize = (15, 8))
+    #plot(requiredStats,percentiles,raw,inp_player,season)
+    namelist=[inp_player]
+    perclist=[percentiles]
+    rawlist=[raw]
+    fig= plt.figure(figsize = (16,9))
     ax = plt.subplot(121, polar=True)
     #fig.set_facecolor(bgcolor.value)
     #ax.patch.set_facecolor(bgcolor.value)
     ax.set_rorigin(-20)
-    bars = ax.bar(
-        theta, height=arr1,
-        width=width,
-        bottom=bottom,
-        #color=c1.value, edgecolor="w",zorder=1,
-        linewidth=1,
-        alpha=0.4
-    )
+
+    if len(namelist)==1:
+        plt.title(label=f"{namelist[0]} | {season}",loc="center",fontdict={'size':20},y=1.15)
+    else:
+        plt.title(label=f"{namelist[0]} vs {namelist[1]} | {season}",loc="center",fontdict={'size':20},y=1.15)
+    
+    for i in range(1):
+        percentiles=perclist[i]
+        raw=rawlist[i]
+        arr1 = np.asarray(percentiles)
+        #arr2 = np.asarray(p2vals)
+        N = len(perclist[i])
+        bottom = 0.0
+        theta, width = np.linspace(0.0, 2 * np.pi, N, endpoint=False, retstep=True)
+
+        
+        bars = ax.bar(
+            theta, height=arr1,
+            width=width,
+            bottom=bottom,
+            #color=c1.value, edgecolor="w",zorder=1,
+            linewidth=1,
+            alpha=0.4
+        )
 
 
-    ax.set_thetagrids((theta+width/2)* 180 / np.pi)
-    ax.set_rticks(np.arange(0.0, 120.0, 20.0))
-    ax.set_theta_direction(-1)
-    ax.set_theta_zero_location("N")
+        ax.set_thetagrids((theta+width/2)* 180 / np.pi)
+        ax.set_rticks(np.arange(0.0, 120.0, 20.0))
+        ax.set_theta_direction(-1)
+        ax.set_theta_zero_location("N")
 
-    ax.grid(zorder=10.0,color='black', linestyle='--', linewidth=0.5)
+        ax.grid(zorder=10.0,color='black', linestyle='--', linewidth=0.5)
 
-    ax.spines['polar'].set_visible(True)
+        ax.spines['polar'].set_visible(True)
 
-    ticks = [i for i in requiredStats]
-    ax.set_xticklabels([])
+        ticks = [i for i in requiredStats]
+        ax.set_xticklabels([])
 
-    rotations = np.rad2deg(theta)
-    for x, bar, rotation, label in zip(theta, bars, rotations, ticks):
-        lab = ax.text(x,105,label,ha='center', va='center',
-                    rotation=-rotation,rotation_mode='anchor',fontsize=7,
-                    )   
-    ax.spines["polar"].set_color('black')
-    ax.spines["polar"].set_linewidth(1)
-    ax.set_ylim(0,100)
-    ax.set_yticklabels([])
+        rotations = np.rad2deg(theta)
+        for x, bar, rotation, label in zip(theta, bars, rotations, ticks):
+            lab = ax.text(x,105,label,ha='center', va='center',
+                        rotation=-rotation,rotation_mode='anchor',fontsize=7,
+                        )   
+        ax.spines["polar"].set_color('black')
+        ax.spines["polar"].set_linewidth(1)
+        ax.set_ylim(0,100)
+        ax.set_yticklabels([])
 
-    table_data=[[str(round(i,2))+" ("+str(round(j,2))+")"] for i,j in zip(raw,percentiles)]
+
+    requiredStats=["Player"]+requiredStats
+    table_data=[]
+    for i in range(1):
+        percentiles=perclist[i]
+        raw=rawlist[i]
+        x=[str(round(i,2))+" ("+str(round(j,2))+")" for i,j in zip(raw,percentiles)]
+        if i==0:
+            x.insert(0,namelist[i]+" (Blue)")
+        else:
+            x.insert(0,namelist[i]+" (Orange)")
+        table_data.append(x)
+
     ax_table = plt.subplot(122)  # Create a new subplot for the table
     ax_table.axis('off')  # Turn off axis for the table
-    #for i in range (len(rawMaster)):
-        #   rawMaster[i]=rawMaster[i].insert(0,playerNames[i])
 
 
-    # print(table_data_transposed, len(table_data_transposed))
-    #print(len(statNameMaster[0]))
-    table_data.insert(0,[inp_player+"/"+season])
-    # print(playerNames,type(playerNames))
-    table = plt.table(cellText=table_data, cellLoc='center', loc='center', rowLabels=["Player"]+requiredStats)
+    table_data=np.array(table_data).transpose()
+
+
+    table = ax_table.table(cellText=table_data, cellLoc='center', loc='center', rowLabels=requiredStats)
     table.auto_set_font_size(False)
     table.set_fontsize(10)
-    table.scale(1, 1.1)  # Adjust scaling as needed for your layout
+    table.scale(1, 2)  # Adjust scaling as needed for your layout
 
+   
 
-
-
-
+    filename="player_radar.png"
     plt.tight_layout()
-    plt.savefig("player_radar.png")
+    plt.savefig(filename)
 
 
 

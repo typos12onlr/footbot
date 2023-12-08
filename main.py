@@ -54,7 +54,7 @@ async def on_message(message):
 
      except Exception as e:
         print(e)
-        await message.reply("Wrong input\nCorrect format: .foot radar, <position> , <player name> , <season (20XX-20XY)>\npositions supported: forward,midfielder | player names are taken as per FbRef database | data available from 2017-2018 ")
+        await message.reply("Wrong input\nEnsure that input players have played atleast 5 90s\nCorrect format: .foot doubleradar, <position> , <player name1>, <player name2> , <season (20XX-20XY)>\nPositions supported: forward,midfielder,defender\nPlayer names are taken as per FbRef database, non ASCII characters removed\ndata available from 2017-2018 ")
       
      
   elif message.content.startswith(".foot scout"):
@@ -72,7 +72,7 @@ async def on_message(message):
         num_players=25
       await message.reply(findSimilar(season=season.strip(),inp_player=inp_player.strip().title(),position=position.strip().lower(),num_players=num_players))
     except:
-      await message.reply("Wrong input, try again\nCorrect Format= '.foot scout,<position [forward/midfielder]>,<player name>,<season>,<number of similar players>'")
+      await message.reply("Wrong input, try again\nCorrect Format= '.foot scout,<position [forward/midfielder/defender]>,<player name>,<season>,<number of similar players>'")
     #await message.channel.send(res[:5])
      
   elif message.content.startswith(".foot doubleradar"):
@@ -89,7 +89,7 @@ async def on_message(message):
 
       except Exception as e:
         print(e)
-        await message.channel.send("Wrong input\nCorrect format: .foot radar, <position> , <player name> , <season (20XX-20XY)>\npositions supported: forward,midfielder | player names are taken as per FbRef database | data available from 2017-2018 ")
+        await message.reply("Wrong input\nEnsure that input players have played atleast 5 90s\nCorrect format: .foot doubleradar, <position> , <player name1>, <player name2> , <season (20XX-20XY)>\nPositions supported: forward,midfielder,defender\nPlayer names are taken as per FbRef database, non ASCII characters removed\ndata available from 2017-2018 ")
 
   elif message.content.startswith(".foot radar test"):
       await message.channel.send("Enter season (e.g., 2021-2022):")
