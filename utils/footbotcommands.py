@@ -20,7 +20,11 @@ def radar(season,inp_player,inp_position):
 
     playerData["Player"]=playerData["Player"].str.title()
 
-    playerData=filterPos(playerData,inp_position,positions={"forward":["FW","FW,MF"],"midfielder":["MF","MF,DF","MF,FW"],"defender":["DF,MF","DF"]})
+    playerData=filterPos(playerData,inp_position,positions={
+                             "forward": ["FW", "FW,MF", "FW,DF", "MF,FW"],
+                             "midfielder": ["MF", "MF,DF", "MF,FW", "DF,MF"],
+                             "defender": ["DF,MF", "DF", "DF,FW"]
+                         })
     #inp_player,inp_position=takeInput(playerData)
 
     stats_dict={
@@ -54,7 +58,11 @@ def doubleRadar(inp_position,inp_player_one,inp_player_two,season):
 
     playerData["Player"]=playerData["Player"].str.title()
 
-    playerData=filterPos(playerData,inp_position,positions={"forward":["FW","FW,MF"],"midfielder":["MF","MF,DF","MF,FW"],"defender":["DF,MF","DF"]})
+    playerData=filterPos(playerData,inp_position,positions={
+                             "forward": ["FW", "FW,MF", "FW,DF", "MF,FW"],
+                             "midfielder": ["MF", "MF,DF", "MF,FW", "DF,MF"],
+                             "defender": ["DF,MF", "DF", "DF,FW"]
+                         })
     #inp_player,inp_position=takeInput(playerData)
 
     stats_dict={
